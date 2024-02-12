@@ -1,0 +1,6 @@
+@SuburbFinder.Server_HostAddress = http://localhost:5123
+
+GET {{SuburbFinder.Server_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
