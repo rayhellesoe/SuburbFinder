@@ -42,9 +42,27 @@ namespace SuburbFinder.Server.Controllers
                 new Suburb{ Id = 30, Name = "Morningside", Latitude = -36.8730933, Longitude = 174.7346636 },
         };
 
-        private static double calculateDistance(double inputLat, double inputLong, double suburbLat, double suburbLong)
+        private static double ToRadians(double degree)
         {
-            return double.MaxValue;
+            return degree * Math.PI / 180.0;
+        }
+
+        /* Calculate distance between two sets of coordinates using the Haversine formula */
+        private static double calculateDistance(double inputLongitude, double inputLatitude, double suburbLongitude, double suburbLatitude)
+        {
+            const int EarthRadius = 6371;
+
+            /* Calculate the differences in latitude and longitude */
+            double longitudeDifference = ToRadians(suburbLongitude - inputLongitude);
+            double latitudeDifference = ToRadians(suburbLatitude - inputLatitude);
+
+            double a = Math.Sin(latitudeDifference / 2) * Math.Sin(latitudeDifference / 2) +
+                Math.Cos(ToRadians(inputLatitude)) * Math.Cos(ToRadians(suburbLatitude)) *
+                Math.Sin(longitudeDifference / 2) * Math.Sin(longitudeDifference / 2);
+
+            double distance = EarthRadius * (2 * Math.Atan2(Math.Sqrt(a), Math.Sqrt(1-a)));
+
+            return distance;
         }
 
         [HttpPost]
@@ -64,7 +82,13 @@ namespace SuburbFinder.Server.Controllers
                 if (nearestSuburb == null)
                     nearestSuburb = suburb;
 
-                calculateDistance(100, 100, 100, 100);
+                double distance = calculateDistance(inputCoordinates.Longitude, inputCoordinates.Latitude, suburb.Longitude, suburb.Latitude);
+
+                if (nearestDistance > distance)
+                {
+                    nearestSuburb = suburb;
+                    nearestDistance = distance;
+                }
             }
 
             return nearestSuburb;
