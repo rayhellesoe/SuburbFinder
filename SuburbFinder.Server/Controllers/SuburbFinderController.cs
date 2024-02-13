@@ -58,7 +58,6 @@ namespace SuburbFinder.Server.Controllers
 
             Suburb nearestSuburb = null;
             double nearestDistance = double.MaxValue;
-            Console.WriteLine(nearestDistance);
 
             foreach (Suburb suburb in Suburbs)
             {
