@@ -46,10 +46,6 @@ export default defineConfig({
     },
     server: {
         proxy: {
-            '^/weatherforecast': {
-                target: 'https://localhost:7212/',
-                secure: false
-            },
             '^/getnearestsuburb': {
                 target: 'https://localhost:7212/',
                 secure: false
