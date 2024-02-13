@@ -49,6 +49,10 @@ export default defineConfig({
             '^/weatherforecast': {
                 target: 'https://localhost:7212/',
                 secure: false
+            },
+            '^/getnearestsuburb': {
+                target: 'https://localhost:7212/',
+                secure: false
             }
         },
         port: 5173,
