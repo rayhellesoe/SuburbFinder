@@ -24,13 +24,16 @@ function App() {
         }
     }
 
-    const coords = { "longitude": -90, "latitude": 90 }
+    //const coords = { "longitude": -90, "latitude": 90 }
 
     return (
-        <main>
-            <CoordinatesForm onSubmit={getNearestSuburb} />
-            <div className="bg-red-100 cursor-pointer" onClick={() => getNearestSuburb(coords)}>TEST API</div>
-            {nearestSuburb == null ? <div>Enter coordinates</div> : <Result suburb={nearestSuburb} />}
+        <main className="flex justify-center w-full">
+            <div className="max-w-md">
+                <h1 className="text-5xl font-bold mb-4">Suburb Finder</h1>
+                <p className="mb-6">Input a set of coordinates to find the nearest suburb.</p>
+                <CoordinatesForm getNearestSuburb={getNearestSuburb} />
+                {nearestSuburb == null ? <></> : <Result suburb={nearestSuburb} />}
+            </div>
         </main>
     )
 }
