@@ -42,11 +42,33 @@ namespace SuburbFinder.Server.Controllers
                 new Suburb{ Id = 30, Name = "Morningside", Latitude = -36.8730933, Longitude = 174.7346636 },
         };
 
-        [HttpGet("{Id:int}")]
-        public Suburb Get(int Id)
+        private static double calculateDistance(double inputLat, double inputLong, double suburbLat, double suburbLong)
         {
-            Suburb suburb = Suburbs.FirstOrDefault(suburb => suburb.Id == Id);
-            return suburb;
+            return double.MaxValue;
+        }
+
+        [HttpPost]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(400)]
+        public ActionResult<Suburb> GetNearestSuburb([FromBody] Coordinates inputCoordinates)
+        {
+            /* Check coordinate range is valid */
+            if (inputCoordinates.Longitude < -180 || inputCoordinates.Longitude > 180 || inputCoordinates.Latitude < -90 || inputCoordinates.Latitude > 90)
+                return BadRequest("Invalid range. Longitude must be between -180 to 180 degrees. Latitude must be between -90 to 90 degrees.");
+
+            Suburb nearestSuburb = null;
+            double nearestDistance = double.MaxValue;
+            Console.WriteLine(nearestDistance);
+
+            foreach (Suburb suburb in Suburbs)
+            {
+                if (nearestSuburb == null)
+                    nearestSuburb = suburb;
+
+                calculateDistance(100, 100, 100, 100);
+            }
+
+            return nearestSuburb;
         }
     }
 }
