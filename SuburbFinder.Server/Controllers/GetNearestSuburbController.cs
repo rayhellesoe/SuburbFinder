@@ -6,7 +6,7 @@ namespace SuburbFinder.Server.Controllers
     [ApiController]
     [Route("[controller]")]
 
-    public class SuburbFinderController : ControllerBase
+    public class GetNearestSuburbController : ControllerBase
     {
         private static readonly IEnumerable<Suburb> Suburbs = new[]
         {
