@@ -66,8 +66,6 @@ namespace SuburbFinder.Server.Controllers
         }
 
         [HttpPost]
-        [ProducesResponseType(200)]
-        [ProducesResponseType(400)]
         public ActionResult<Suburb> NearestSuburb([FromBody] Coordinates inputCoordinates)
         {
             /* Check coordinate range is valid */
