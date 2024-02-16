@@ -46,7 +46,7 @@ export default defineConfig({
     },
     server: {
         proxy: {
-            '^/getnearestsuburb': {
+            '^/nearestsuburb': {
                 target: 'https://localhost:7212/',
                 secure: false
             }

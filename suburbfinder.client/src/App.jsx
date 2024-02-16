@@ -8,7 +8,7 @@ function App() {
 
     const getNearestSuburb = async (formData) => {
         try {
-            const res = await fetch('getnearestsuburb', {
+            const res = await fetch('nearestsuburb', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
