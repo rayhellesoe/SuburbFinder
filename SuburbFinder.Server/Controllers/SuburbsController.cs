@@ -6,7 +6,7 @@ namespace SuburbFinder.Server.Controllers
     [ApiController]
     [Route("[controller]")]
 
-    public class NearestSuburbController : ControllerBase
+    public class SuburbsController : ControllerBase
     {
         private static readonly IEnumerable<Suburb> Suburbs = new[]
         {
@@ -65,8 +65,8 @@ namespace SuburbFinder.Server.Controllers
             return distance;
         }
 
-        [HttpPost]
-        public ActionResult<Suburb> NearestSuburb([FromBody] Coordinates inputCoordinates)
+        [HttpGet("nearest")]
+        public ActionResult<Suburb> NearestSuburb([FromQuery] Coordinates inputCoordinates)
         {
             /* Check coordinate range is valid */
             if (inputCoordinates.Longitude < -180 || inputCoordinates.Longitude > 180 || inputCoordinates.Latitude < -90 || inputCoordinates.Latitude > 90)
