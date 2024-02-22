@@ -8,13 +8,8 @@ function App() {
 
     const getNearestSuburb = async (formData) => {
         try {
-            const res = await fetch('getnearestsuburb', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(formData)
-            });
+            const requestUrl = `suburbs/nearest?latitude=${formData.latitude}&longitude=${formData.longitude}`
+            const res = await fetch(requestUrl);
 
             const data = await res.json();
 
@@ -23,8 +18,6 @@ function App() {
             console.error('Error fetching data:', error)
         }
     }
-
-    //const coords = { "longitude": -90, "latitude": 90 }
 
     return (
         <main className="flex justify-center w-full">
