@@ -5,7 +5,7 @@ import './index.css'
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 
-import coordinatesReducer from './reducers/coorodinatesReducer'
+import coordinatesReducer from './reducers/coordinatesReducer'
 
 const store = createStore(coordinatesReducer)
 

@@ -1,6 +1,6 @@
 const coordinatesReducer = (state = {}, action) => {
     switch(action.type) {
-      case "input/setCoordinates":
+      case "coordinates/setCoordinates":
         return action.payload
       default: 
         return state
@@ -9,7 +9,7 @@ const coordinatesReducer = (state = {}, action) => {
 
 export const setCoordinates = (coordinates) => {
   return ({
-    type: "input/setCoordinates",
+    type: "coordinates/setCoordinates",
     payload: coordinates
   })
 }

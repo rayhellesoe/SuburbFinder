@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { setCoordinates } from '../reducers/coorodinatesReducer'
+import { setCoordinates } from '../reducers/coordinatesReducer'
 
 const CoordinatesForm = ({ getNearestSuburb }) => {
     const dispatch = useDispatch()
