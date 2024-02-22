@@ -1,14 +1,14 @@
 import { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { setCoordinates } from '../reducers/coorodinatesReducer'
 
 const CoordinatesForm = ({ getNearestSuburb }) => {
-    const [coords, setCoords] = useState({
-        latitude: 0,
-        longitude: 0,
-    });
+    const dispatch = useDispatch()
+    const coords = useSelector(state => state)
 
     const updateInput = (e) => {
-        const { id, value } = e.target;
-        setCoords((prevCoords) => ({ ...prevCoords, [id]: parseFloat(value) }));
+        const { id, value } = e.target
+        dispatch(setCoordinates({ ...coords, [id]: value }))
     }
 
     const handleSubmit = (e) => {
