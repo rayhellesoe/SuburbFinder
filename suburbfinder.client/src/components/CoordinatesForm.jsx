@@ -4,7 +4,7 @@ import { setCoordinates } from '../reducers/coordinatesReducer'
 
 const CoordinatesForm = ({ getNearestSuburb }) => {
     const dispatch = useDispatch()
-    const coords = useSelector(state => state)
+    const coords = useSelector(state => state.coordinates)
 
     const updateInput = (e) => {
         const { id, value } = e.target
