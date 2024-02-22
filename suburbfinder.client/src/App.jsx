@@ -6,7 +6,7 @@ import Result from './components/Result'
 const App = () => {
     const nearestSuburb = useSelector(state => state.suburbs)
     const isNearestSuburbEmpty = Object.keys(nearestSuburb).length === 0
-    const resultElement = isNearestSuburbEmpty ? <></> : <Result suburb={nearestSuburb} />
+    const resultElement = isNearestSuburbEmpty ? <></> : <Result />
 
     return (
         <main className="flex justify-center w-full">
