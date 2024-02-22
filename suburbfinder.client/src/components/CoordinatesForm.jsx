@@ -1,14 +1,32 @@
-import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { setCoordinates } from '../reducers/coordinatesReducer'
+import { setNearestSuburb } from '../reducers/suburbsReducer'
 
-const CoordinatesForm = ({ getNearestSuburb }) => {
+const CoordinatesForm = () => {
     const dispatch = useDispatch()
     const coords = useSelector(state => state.coordinates)
 
     const updateInput = (e) => {
         const { id, value } = e.target
         dispatch(setCoordinates({ ...coords, [id]: value }))
+    }
+
+    const getNearestSuburb = async (formData) => {
+        try {
+            const res = await fetch('getnearestsuburb', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            });
+
+            const data = await res.json();
+
+            dispatch(setNearestSuburb(data))
+        } catch (error) {
+            console.error('Error fetching data:', error)
+        }
     }
 
     const handleSubmit = (e) => {
